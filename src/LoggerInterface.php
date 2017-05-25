@@ -23,7 +23,7 @@ interface LoggerInterface extends PsrLoggerInterface
     /**
      * register a log handle to handle log messages
      *
-     * @param       Psr\Log\LoggerInterface
+     * @param       PsrLoggerInterface     $logHandlerObject
      * @return      void
      */
     public function addHandler(PsrLoggerInterface $logHandlerObject);

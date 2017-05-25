@@ -9,13 +9,7 @@
  */
 namespace Naucon\Logger\Handler;
 
-use Naucon\File\File;
-use Naucon\File\FileWriter;
 use Naucon\Logger\LogRecord;
-use Naucon\Logger\LogLevel;
-use Naucon\Logger\FormatHelper;
-use Naucon\Logger\Handler\HandlerAbstract;
-use Naucon\Logger\Handler\Exception\HandlerException;
 
 /**
  * Null Logger Class
@@ -28,10 +22,10 @@ class NullHandler extends HandlerAbstract
 {
     /**
      * @access      protected
-     * @param       LogRecord
+     * @param       LogRecord       $logRecord
      * @return      void
      */
-    protected function processRecord(\Naucon\Logger\LogRecord $logRecord)
+    protected function processRecord(LogRecord $logRecord)
     {
         // noop
     }

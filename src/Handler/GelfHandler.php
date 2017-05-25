@@ -11,8 +11,6 @@ namespace Naucon\Logger\Handler;
 
 use Naucon\Logger\LogRecord;
 use Naucon\Logger\LogLevel;
-use Naucon\Logger\Handler\HandlerAbstract;
-use Naucon\Logger\Handler\Exception\HandlerException;
 use Gelf\PublisherInterface;
 use Gelf\Message;
 
@@ -47,10 +45,10 @@ class GelfHandler extends HandlerAbstract
     /**
      * Constructor
      *
-     * @param       PublisherInterface
-     * @param       string                  host e.g. domain
-     * @param       mixed                   facitly e.g. component
-     * @param       string                  log level
+     * @param       PublisherInterface      $publisher
+     * @param       string      $host           host e.g. domain
+     * @param       mixed       $facility       facitly e.g. component
+     * @param       string      $level          log level
      *
      * facility can be any string or an integer according to syslog facility
      * numbers (You can set and overwrite facility names in the web interface)
@@ -79,7 +77,7 @@ class GelfHandler extends HandlerAbstract
      * 22 = local6
      * 23 = local7
      */
-    public function __construct(PublisherInterface $publisher, $host, $facility, $level=LogLevel::DEBUG)
+    public function __construct(PublisherInterface $publisher, $host, $facility, $level = LogLevel::DEBUG)
     {
         $this->setPublisher($publisher);
         $this->setHost($host);
@@ -98,12 +96,12 @@ class GelfHandler extends HandlerAbstract
     }
 
     /**
-     * @param	PublisherInterface
+     * @param	PublisherInterface      $publisher
      * @return  void
      */
     public function setPublisher(PublisherInterface $publisher)
     {
-        return $this->publisher = $publisher;
+        $this->publisher = $publisher;
     }
 
     /**
@@ -132,7 +130,7 @@ class GelfHandler extends HandlerAbstract
     }
 
     /**
-     * @param	mixed                   facitly e.g. component
+     * @param	mixed       $facility       facitly e.g. component
      * @return  void
      *
      * facility can be any string or an integer according to syslog facility
@@ -169,10 +167,10 @@ class GelfHandler extends HandlerAbstract
 
     /**
      * @access      protected
-     * @param       LogRecord
+     * @param       LogRecord       $logRecord
      * @return      void
      */
-    protected function processRecord(\Naucon\Logger\LogRecord $logRecord)
+    protected function processRecord(LogRecord $logRecord)
     {
         $message = new Message();
         $message->setLevel($logRecord->getLevel());
@@ -183,7 +181,7 @@ class GelfHandler extends HandlerAbstract
         if (method_exists($logRecord, 'getCreated()')) {
             $message->setTimestamp($logRecord->getCreated());
         } else {
-            $message->setTimestamp(time(true));
+            $message->setTimestamp(time());
         }
 
         $context = $logRecord->getContext();

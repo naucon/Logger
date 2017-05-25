@@ -9,7 +9,6 @@
  */
 namespace Naucon\Logger;
 
-use Naucon\Logger\Logger;
 use Psr\Log\LoggerInterface as PsrLoggerInterface;
 
 /**
@@ -38,7 +37,7 @@ class LoggerManager
      * Constructor
      *
      * @access      private
-     * @param       Psr\Log\LoggerInterface
+     * @param       PsrLoggerInterface     $loggerObject
      */
     private function __construct(PsrLoggerInterface $loggerObject)
     {
@@ -67,7 +66,7 @@ class LoggerManager
      * singleton
      *
      * @static
-     * @param       Psr\Log\LoggerInterface
+     * @param       PsrLoggerInterface      $loggerObject
      * @return      void
      */
     static public function init(PsrLoggerInterface $loggerObject)
@@ -78,7 +77,7 @@ class LoggerManager
 
 
     /**
-     * @return      Psr\Log\LoggerInterface
+     * @return      PsrLoggerInterface
      */
     private function getLoggerObject()
     {
@@ -86,7 +85,7 @@ class LoggerManager
     }
 
     /**
-     * @param       Psr\Log\LoggerInterface
+     * @param       PsrLoggerInterface      $loggerObject
      * @return      void
      */
     private function setLoggerObject(PsrLoggerInterface $loggerObject)
@@ -98,11 +97,11 @@ class LoggerManager
      * System is unusable.
      *
      * @static
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    static public function emergency($message, array $context=array())
+    static public function emergency($message, array $context = array())
     {
         if (!is_null(self::$singletonObject)) {
             self::$singletonObject->getLoggerObject()->emergency($message, $context);
@@ -116,11 +115,11 @@ class LoggerManager
      * trigger the SMS alerts and wake you up.
      *
      * @static
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    static public function alert($message, array $context=array())
+    static public function alert($message, array $context = array())
     {
         if (!is_null(self::$singletonObject)) {
             self::$singletonObject->getLoggerObject()->alert($message, $context);
@@ -133,11 +132,11 @@ class LoggerManager
      * Example: Application component unavailable, unexpected exception.
      *
      * @static
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    static public function critical($message, array $context=array())
+    static public function critical($message, array $context = array())
     {
         if (!is_null(self::$singletonObject)) {
             self::$singletonObject->getLoggerObject()->critical($message, $context);
@@ -149,11 +148,11 @@ class LoggerManager
      * be logged and monitored.
      *
      * @static
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    static public function error($message, array $context=array())
+    static public function error($message, array $context = array())
     {
         if (!is_null(self::$singletonObject)) {
             self::$singletonObject->getLoggerObject()->error($message, $context);
@@ -167,11 +166,11 @@ class LoggerManager
      * that are not necessarily wrong.
      *
      * @static
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    static public function warning($message, array $context=array())
+    static public function warning($message, array $context = array())
     {
         if (!is_null(self::$singletonObject)) {
             self::$singletonObject->getLoggerObject()->warning($message, $context);
@@ -182,11 +181,11 @@ class LoggerManager
      * Normal but significant events.
      *
      * @static
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    static public function notice($message, array $context=array())
+    static public function notice($message, array $context = array())
     {
         if (!is_null(self::$singletonObject)) {
             self::$singletonObject->getLoggerObject()->notice($message, $context);
@@ -199,11 +198,11 @@ class LoggerManager
      * Example: User logs in, SQL logs.
      *
      * @static
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    static public function info($message, array $context=array())
+    static public function info($message, array $context = array())
     {
         if (!is_null(self::$singletonObject)) {
             self::$singletonObject->getLoggerObject()->info($message, $context);
@@ -214,11 +213,11 @@ class LoggerManager
      * Detailed debug information.
      *
      * @static
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    static public function debug($message, array $context=array())
+    static public function debug($message, array $context = array())
     {
         if (!is_null(self::$singletonObject)) {
             self::$singletonObject->getLoggerObject()->debug($message, $context);
@@ -229,12 +228,12 @@ class LoggerManager
      * Logs with an arbitrary level.
      *
      * @static
-     * @param       mixed                   $level
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       mixed       $level
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    static public function log($level, $message, array $context=array())
+    static public function log($level, $message, array $context = array())
     {
         if (!is_null(self::$singletonObject)) {
             self::$singletonObject->getLoggerObject()->log($level, $message, $context);

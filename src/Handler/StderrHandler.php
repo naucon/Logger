@@ -11,10 +11,7 @@ namespace Naucon\Logger\Handler;
 
 use Naucon\File\FileWriter;
 use Naucon\Logger\LogRecord;
-use Naucon\Logger\LogLevel;
 use Naucon\Logger\FormatHelper;
-use Naucon\Logger\Handler\HandlerAbstract;
-use Naucon\Logger\Handler\Exception\HandlerException;
 
 /**
  * Standard Error Handler Class
@@ -27,23 +24,21 @@ class StderrHandler extends HandlerAbstract
 {
     /**
      * @access      protected
-     * @param       LogRecord
+     * @param       LogRecord       $logRecord
      * @return      void
      */
-    protected function processRecord(\Naucon\Logger\LogRecord $logRecord)
+    protected function processRecord(LogRecord $logRecord)
     {
         $this->writeRecord($this->formatRecord($logRecord));
     }
 
     /**
      * @access      protected
-     * @param       LogRecord
+     * @param       LogRecord       $logRecord
      * @return      string
      */
     protected function formatRecord(LogRecord $logRecord)
     {
-        $formatHelper = new FormatHelper();
-
         $logRecordString = '[' . date('d-M-Y H:i:s e', round($logRecord->getCreated(), 0)) . '] '
             . 'PHP '
             . strtolower($logRecord->getLevel()) . ': '
@@ -69,7 +64,7 @@ class StderrHandler extends HandlerAbstract
 
     /**
      * @access      protected
-     * @param       string                  log record string
+     * @param       string      $logRecordString        log record string
      * @return      void
      */
     protected function writeRecord($logRecordString)

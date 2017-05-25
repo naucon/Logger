@@ -10,7 +10,8 @@
 namespace Naucon\Logger\Tests;
 
 use Naucon\Logger\Logger;
-use Naucon\Logger\LogRecord;
+use Naucon\Logger\LoggerInterface;
+use Naucon\Logger\Handler\LogHandler;
 use Naucon\Logger\Handler\StdHandler;
 use Psr\Log\LogLevel;
 use Psr\Log\Test\DummyTest;
@@ -57,6 +58,8 @@ class StdHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideLevelsAndMessages
+     * @param   string      $level
+     * @param   string      $message
      */
     public function testLogsAtAllLevels($level, $message)
     {
@@ -86,7 +89,7 @@ class StdHandlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Psr\Log\InvalidArgumentException
+     * @expectedException \Psr\Log\InvalidArgumentException
      */
     public function testThrowsOnInvalidLevel()
     {

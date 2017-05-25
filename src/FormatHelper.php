@@ -18,13 +18,13 @@ namespace Naucon\Logger;
 class FormatHelper
 {
     /**
-     * @param       string	                string
-     * @param	    int		                string lenght
-     * @param	    string	                optional et cetera string eg. "..."
-     * @param	    bool	                optional truncate within word, default = false
-     * @return	    string                  string with new length
+     * @param       string      $sting              string
+     * @param	    int         $stringLength       string lenght
+     * @param	    string      $etc                optional et cetera string eg. "..."
+     * @param	    bool        $withinWord         optional truncate within word, default = false
+     * @return	    string                          string with new length
      */
-    public function truncate($sting, $stringLength, $etc='...', $withinWord=false)
+    public function truncate($sting, $stringLength, $etc = '...', $withinWord = false)
     {
         $sting			= html_entity_decode((string)$sting);	// eliminate html code
         $stringLength 	= (int)$stringLength;
@@ -55,10 +55,10 @@ class FormatHelper
     }
 
     /**
-     * @param       string                  string
-     * @param	    int		                string lenght
-     * @param	    string	                optional padding eg. " "
-     * @return	    string	                string with new length
+     * @param       string      $string                 string
+     * @param	    int         $newStringLength        string lenght
+     * @param	    string      $padding                optional padding eg. " "
+     * @return	    string	                            string with new length
      */
     public function pad($string, $newStringLength, $padding=' ')
     {

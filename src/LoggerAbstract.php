@@ -9,9 +9,6 @@
  */
 namespace Naucon\Logger;
 
-use Naucon\Logger\LoggerInterface;
-use Naucon\Logger\LogLevel;
-use Naucon\Logger\Exception\LoggerException;
 use Naucon\Logger\Exception\InvalidArgumentException;
 use Psr\Log\AbstractLogger as PsrAbstractLogger;
 use Psr\Log\LoggerInterface as PsrLoggerInterface;
@@ -48,7 +45,7 @@ abstract class LoggerAbstract extends PsrAbstractLogger implements LoggerInterfa
     /**
      * return the registered log handlers
      *
-     * @return      array
+     * @return      array|PsrLoggerInterface
      */
     public function getHandlers()
     {
@@ -58,7 +55,7 @@ abstract class LoggerAbstract extends PsrAbstractLogger implements LoggerInterfa
     /**
      * register a log handle to handle log messages
      *
-     * @param       Psr\Log\LoggerInterface
+     * @param       PsrLoggerInterface      $logHandlerObject
      * @return      void
      */
     public function addHandler(PsrLoggerInterface $logHandlerObject)
@@ -69,12 +66,12 @@ abstract class LoggerAbstract extends PsrAbstractLogger implements LoggerInterfa
     /**
      * Logs with an arbitrary level.
      *
-     * @param       mixed                   $level
-     * @param       string                  $message
-     * @param       array                   $context
+     * @param       mixed       $level          $level
+     * @param       string      $message        $message
+     * @param       array       $context        $context
      * @return      null
      */
-    public function log($level, $message, array $context=array())
+    public function log($level, $message, array $context = array())
     {
         // verify given log level
         if (!$this->verifyLevel($level)) {
@@ -97,7 +94,7 @@ abstract class LoggerAbstract extends PsrAbstractLogger implements LoggerInterfa
     }
 
     /**
-     * @param       mixed                   $level
+     * @param       mixed       $level
      * @return      bool
      */
     public function verifyLevel($level)
@@ -111,7 +108,7 @@ abstract class LoggerAbstract extends PsrAbstractLogger implements LoggerInterfa
     }
 
     /**
-     * @param       string                  $message
+     * @param       string      $message
      * @return      bool
      */
     public function verifyMessage($message)

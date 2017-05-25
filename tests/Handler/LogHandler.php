@@ -23,7 +23,7 @@ class LogHandler extends HandlerAbstract
 
     /**
      * @access      protected
-     * @param       LogRecord
+     * @param       LogRecord       $logRecord
      * @return      void
      */
     protected function processRecord(\Naucon\Logger\LogRecord $logRecord)

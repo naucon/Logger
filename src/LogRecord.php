@@ -42,11 +42,11 @@ class LogRecord
     /**
      * Constructor
      *
-     * @param       mixed                   log level
-     * @param       string                  log message
-     * @param       array                   log context
+     * @param       mixed       $level          log level
+     * @param       string      $message        log message
+     * @param       array       $context        log context
      */
-    public function __construct($level, $message, array $context=array())
+    public function __construct($level, $message, array $context = array())
     {
         $this->setLevel($level);
         $this->setMessage($message);
@@ -66,7 +66,7 @@ class LogRecord
     }
 
     /**
-     * @param       sting                   log level
+     * @param       string      $level      log level
      * @return      void
      */
     public function setLevel($level)
@@ -75,10 +75,10 @@ class LogRecord
     }
 
     /**
-     * @param       bool                    raw message
+     * @param       bool        $raw        raw message
      * @return      string                  log message
      */
-    public function getMessage($raw=false)
+    public function getMessage($raw = false)
     {
         $message = (string)$this->message;
         if (!$raw) {
@@ -96,7 +96,7 @@ class LogRecord
     }
 
     /**
-     * @param       string                  log message
+     * @param       string      $message        log message
      * @return      void
      */
     public function setMessage($message)
@@ -105,7 +105,7 @@ class LogRecord
     }
 
     /**
-     * @return      array                   log context
+     * @return      array                       log context
      */
     public function getContext()
     {
@@ -113,7 +113,7 @@ class LogRecord
     }
 
     /**
-     * @param       array                  log context
+     * @param       array       $context        log context
      * @return      void
      */
     public function setContext(array $context)
@@ -130,7 +130,7 @@ class LogRecord
     }
 
     /**
-     * @param       float                   unix timestamp with microseconds
+     * @param       float       $created        unix timestamp with microseconds
      * @return      void
      */
     public function setCreated($created)

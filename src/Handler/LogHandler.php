@@ -14,8 +14,6 @@ use Naucon\File\FileWriter;
 use Naucon\Logger\LogRecord;
 use Naucon\Logger\LogLevel;
 use Naucon\Logger\FormatHelper;
-use Naucon\Logger\Handler\HandlerAbstract;
-use Naucon\Logger\Handler\Exception\HandlerException;
 
 /**
  * Log Handler Class
@@ -72,10 +70,10 @@ class LogHandler extends HandlerAbstract
     /**
      * Constructor
      *
-     * @param       string|File\\SplFileInfo                path to cache directory
-     * @param       string                  log level
+     * @param       string|File|\SplFileInfo        $pathname       path to cache directory
+     * @param       string      $level      log level
      */
-    public function __construct($pathname, $level=LogLevel::DEBUG)
+    public function __construct($pathname, $level = LogLevel::DEBUG)
     {
         if ($pathname instanceof File) {
             $fileObject = $pathname;
@@ -148,7 +146,7 @@ class LogHandler extends HandlerAbstract
 
     /**
      * @access      protected
-     * @param       File                    file object
+     * @param       File        $fileObject
      * @return      void
      */
     protected function setFileObject(File $fileObject)
@@ -159,7 +157,7 @@ class LogHandler extends HandlerAbstract
     /**
      * include client ip address in log record
      *
-     * @param       bool        true = include client ip address, false = exclude client ip address
+     * @param       bool        $include        true = include client ip address, false = exclude client ip address
      * @return      void
      */
     public function includeClientIp($include)
@@ -170,7 +168,7 @@ class LogHandler extends HandlerAbstract
     /**
      * include user in log record, the user have to be set by calling setUser()
      *
-     * @param       bool        true
+     * @param       bool        $include        true
      * @return      void
      */
     public function includeUser($include)
@@ -192,7 +190,7 @@ class LogHandler extends HandlerAbstract
     }
 
     /**
-     * @param       string          user name or id
+     * @param       string      $user       user name or id
      * @return      void
      */
     public function setUser($user)
@@ -232,17 +230,17 @@ class LogHandler extends HandlerAbstract
 
     /**
      * @access      protected
-     * @param       LogRecord
+     * @param       LogRecord       $logRecord
      * @return      void
      */
-    protected function processRecord(\Naucon\Logger\LogRecord $logRecord)
+    protected function processRecord(LogRecord $logRecord)
     {
         $this->writeRecord($this->formatRecord($logRecord));
     }
 
     /**
      * @access      protected
-     * @param       LogRecord
+     * @param       LogRecord       $logRecord
      * @return      string
      */
     protected function formatRecord(LogRecord $logRecord)
@@ -281,7 +279,7 @@ class LogHandler extends HandlerAbstract
 
     /**
      * @access      protected
-     * @param       string                  log record string
+     * @param       string      $logRecordString        log record string
      * @return      void
      */
     protected function writeRecord($logRecordString)

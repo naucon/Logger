@@ -9,8 +9,6 @@
  */
 namespace Naucon\Logger;
 
-use Naucon\Logger\LoggerAbstract;
-
 /**
  * Logger Class
  *

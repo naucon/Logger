@@ -58,6 +58,8 @@ class LoggerManagerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideLevelsAndMessages
+     * @param   string      $level
+     * @param   string      $message
      */
     public function testLogsAtAllLevels($level, $message)
     {
@@ -88,7 +90,7 @@ class LoggerManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Psr\Log\InvalidArgumentException
+     * @expectedException \Psr\Log\InvalidArgumentException
      */
     public function testThrowsOnInvalidLevel()
     {

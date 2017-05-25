@@ -10,6 +10,7 @@
 namespace Naucon\Logger\Tests;
 
 use Naucon\Logger\Logger;
+use Naucon\Logger\LoggerInterface;
 use Naucon\Logger\LogRecord;
 use Naucon\Logger\Tests\Handler\LogHandler;
 

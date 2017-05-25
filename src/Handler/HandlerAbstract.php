@@ -10,7 +10,6 @@
 namespace Naucon\Logger\Handler;
 
 use Naucon\Logger\LogRecord;
-use Naucon\Logger\Handler\HandlerInterface;
 use Naucon\Logger\Handler\Exception\HandlerException;
 use Psr\Log\AbstractLogger as PsrAbstractLogger;
 use Psr\Log\LogLevel;
@@ -57,9 +56,9 @@ abstract class HandlerAbstract extends PsrAbstractLogger implements HandlerInter
     /**
      * Constructor
      *
-     * @param       string                  log level
+     * @param       string      $level      log level
      */
-    public function __construct($level=LogLevel::DEBUG)
+    public function __construct($level = LogLevel::DEBUG)
     {
         $this->setLogLevel($level);
     }
@@ -74,7 +73,7 @@ abstract class HandlerAbstract extends PsrAbstractLogger implements HandlerInter
 
     /**
      * @access      protected
-     * @param       string                  log level
+     * @param       string      $logLevel       log level
      * @return      void
      */
     protected function setLogLevel($logLevel)
@@ -93,7 +92,7 @@ abstract class HandlerAbstract extends PsrAbstractLogger implements HandlerInter
 
     /**
      * @access      protected
-     * @param       string                  log level
+     * @param       string      $logLevelPriority       log level
      * @return      void
      */
     protected function setLogLevelPriority($logLevelPriority)
@@ -102,8 +101,9 @@ abstract class HandlerAbstract extends PsrAbstractLogger implements HandlerInter
     }
 
     /**
-     * @param       string                  log level
+     * @param       string      $level      log level
      * @return      int                     log level priority
+     * @throws      HandlerException
      */
     public function getPriority($level)
     {
@@ -118,12 +118,12 @@ abstract class HandlerAbstract extends PsrAbstractLogger implements HandlerInter
     /**
      * Logs with an arbitrary level.
      *
-     * @param       mixed $level
-     * @param       string $message
-     * @param       array $context
+     * @param       mixed       $level
+     * @param       string      $message
+     * @param       array       $context
      * @return      void
      */
-    public function log($level, $message, array $context=array())
+    public function log($level, $message, array $context = array())
     {
         if ($this->getLogLevelPriority() >= $this->getPriority($level)) {
             $logRecord = new LogRecord($level, $message, $context);
@@ -134,8 +134,8 @@ abstract class HandlerAbstract extends PsrAbstractLogger implements HandlerInter
     /**
      * @abstract
      * @access      protected
-     * @param       LogRecord
+     * @param       LogRecord       $logRecord
      * @return      void
      */
-    abstract protected function processRecord(\Naucon\Logger\LogRecord $logRecord);
+    abstract protected function processRecord(LogRecord $logRecord);
 }
